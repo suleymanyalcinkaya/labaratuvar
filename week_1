@@ -1,37 +1,37 @@
-#istenen bir sayının işlevsel bir kuvvetini veren fonksiyon
+#istenen bir sayının istenen bir kuvvetini veren fonksiyon
 
-def  gücü ( a , b ):
-    Eğer  b  ==  0 :
-        dönüş  1
-    elif  b  ==  1 :
-        dönüş  a
-    başka :
-         a * gücü döndürme ( a , b - 1 )
-baskı ( güç ( 4 , 3 ))
+def power(a, b):
+    if b == 0:
+        return 1
+    elif b == 1:
+        return a
+    else:
+        return a*power(a, b-1)
+print (power(4,3))
 
-#recursive sürüm
-def  gücü ( a , b ):
-    Eğer  b  ==  0 :
-        dönüş  1
-    elif  b  ==  1 :
-        dönüş  a
-    başka :
-        Eğer  B  %  2  ==  0 :
-            dönüş  gücü ( a * a , b // 2 )
-        başka :
-            dönüş  gücü ( a * a , b // 2 ) * a
-        #return a * gücü (a, b-1)
-baskı ( güç ( 5 , 3 ))
+#recursive version
+def power(a,b):
+    if b == 0:
+        return 1
+    elif b == 1:
+        return a
+    else:
+        if b % 2 == 0:
+            return power(a*a, b//2)
+        else:
+            return power(a*a, b//2)*a
+        #return a*power(a, b-1)
+print (power(5, 3))
 
-#verilen bir tarafta ardışık olan sayılardaki en yüksek toplam ve listeyi sağ, sol olarak ikiye böldüğümüzde sol tarafa sağdan, sol tarafa sağdan başlakenki
-liste_1 = [ 4 , - 3 , 5 , - 2 , - 1 , 2 , 6 , - 2 ]
-max = 0
-için  i  de  aralık ( 8 ):
-    için  j  olarak  aralık ( I , 8 ):
-        t = 0
-        için  k  içinde  aralıkta ( i , j ):
-            t = t + liste_1 [ k ]
-    Eğer  azami < t :
-        max = t
-        i_1 , i_2 = i , j
-baskı ( maks , i_1 , i_2 )
+#verilen bir listede ardışık olan sayılardaki en yüksek toplam ve listeyi sağ, sol olarak ikiye böldüğümüzde sol tarafa sağdan, sol tarafa sağdan gidilirkenki ardışık sayıların en yüksek toplamı
+liste_1=[4,-3,5,-2,-1,2,6,-2]
+max=0
+for i in range(8):
+    for j in range(i,8):
+        t=0
+        for k in range(i,j):
+            t=t+liste_1[k]
+    if max<t:
+        max=t
+        i_1,i_2=i,j
+print(max,i_1,i_2)
