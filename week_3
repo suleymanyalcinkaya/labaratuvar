@@ -1,79 +1,79 @@
-dan  sympy  ithalat  FiniteSet
+from sympy import FiniteSet
 
 # Liste içersinden eleman sayısı bulma
 
-liste_1  = [ 0 , 5 , 25 , 100 , 5 , 5 , 0 , 100 ]
-def  my_h ( liste_1 ):
-    my_d  = {}
-    için  i  de  liste_1 :
-        eğer  ben  de  my_d :
-            my_d [ i ] = my_d [ i ] +  1
-        başka :
-            my_d [ i ] =  1
-    dönüş  my_d
-yazdır ( my_h ( liste_1 ))
+liste_1 = [0,5,25,100,5,5,0,100]
+def my_h(liste_1):
+    my_d = {}
+    for i in liste_1:
+        if i in my_d:
+            my_d[i]=my_d[i] + 1
+        else:
+            my_d[i] = 1
+    return my_d
+print(my_h(liste_1))
 
 #Liste içersinden eleman sayısı bulmak için farklı bir yol
 
-liste_1  = [ 0 , 5 , 25 , 100 , 5 , 5 , 0 , 100 ]
-def  my_h ( liste_1 ):
-    my_d  = {}
-    için  i   de  liste_1 :
-        eğer  ben  değil  de  my_d :
-           my_d [ i ] =  1
-        başka :
-            my_d [ i ] + = 1
-    dönüş  my_d
-yazdır ( my_h ( liste_1 ))
+liste_1 = [0,5,25,100,5,5,0,100]
+def my_h(liste_1):
+    my_d = {}
+    for i  in liste_1:
+        if i not in my_d:
+           my_d[i] = 1
+        else:
+            my_d[i] +=1
+    return my_d
+print(my_h(liste_1))
 
-# Fibonacci hesaplama özyinelemeli
+# Fibonacci hesaplama recursive
 
-bilinen = { 0 : 0 , 1 : 1 }
-def  fibo_rec ( n ):
-    Eğer  , n  de  bilinmektedir :
-         bilinen dönüş [ n ]
-    başka :
-        sonuç  =  fibo_rec ( n - 1 ) +  fibo_rec ( n - 2 )
-        bilinen [ n ] = sonuç
-        dönüş  sonucu
-x = fibo_rec ( 10 )
-baskı ( x )
-
-
-
-# Gönderilen sayının nedeni olup olmadığını kontrol etme (1 ise var, 0 ise yok)
-def  arama ( d , v ):
-    için  anahtar  olarak  aralık ( 0 , len ( liste_1 )):
-        eğer  d [ anahtar ] == v :
-            dönüş  1
-    başka :
-        dönüş  0
-
-liste_1 = [ 0 , 5 , 25 , 100 , 5 , 5 , 0 , 100 ]
-yazdır ( arama ( liste_1 , 5100 ))
+known={0:0,1:1}
+def fibo_rec(n):
+    if n in known:
+        return known[n]
+    else:
+        result = fibo_rec(n-1) + fibo_rec(n-2)
+        known[n]=result
+        return result
+x=fibo_rec(10)
+print(x)
 
 
-# sayının asal sayı olup olmadığını bulma
 
-def  check_prime ( sayı ):
-    eğer  sayı =! 1 :
-        için  I  de  aralık ( 2 , sayı ):
-            Eğer  numara % i == 0 :
-                dönüş  Yanlış
-    başka :
-        dönüş  Yanlış
-    dönüş  Doğru
+# Gönderilen sayının listede olup olmadığının kontrol edilmesi(1 ise var, 0 ise yok)
+def lookup(d,v):
+    for key in range(0,len(liste_1)):
+        if d[key]==v:
+            return 1
+    else:
+        return 0
 
-# 1-21 arasında sınırlanmış asal sayıları bulma ve bu asal sayıların sayısının 1-21 arasındaki sayı adetine bölünmesi
+liste_1= [0,5,25,100,5,5,0,100]
+print(lookup(liste_1,5100))
 
-def  olasılığı ( boşluk , olay ):
-    dönüş  len ( olay ) / len ( boşluk )
 
-boşluk  = Sonlu Küme ( * aralık ( 1 , 21 )) #toplam 20 sayı var
-asal  = []
-için  num  içinde  uzay :
-    Eğer  check_prime ( num ):
-        asal . ekle ( num )
-event = FiniteSet ( * asal ) #bu sayılardan 8 tanesi asal
-p = olasılık ( boşluk , olay )
-baskı ( p )
+#sayının asal sayı olup olmadığını bulma
+
+def check_prime(number):
+    if number!=1:
+        for i in range(2,number):
+            if number%i==0:
+                return False
+    else:
+        return False
+    return True
+
+#1-21 arasında sınırlanmış asal sayıları bulma ve bu asal sayıların sayısının 1-21 arasındaki sayı adetine bölünmesi
+
+def probability(space,event):
+    return len(event)/len(space)
+
+space =FiniteSet(*range(1,21))#toplam 20 sayı var
+primes =[]
+for num in space:
+    if check_prime(num):
+        primes.append(num)
+event=FiniteSet(*primes)#bu sayılardan 8 tanesi asal
+p=probability(space,event)
+print(p)
