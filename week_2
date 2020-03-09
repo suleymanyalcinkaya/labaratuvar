@@ -1,0 +1,39 @@
+#bir dizi içerisinden ardışık sayılar seçilecek ve bu sayılardan en büyük toplam bulma
+
+
+
+def  max_of_two ( a , b ):
+    eğer ( a > b ):
+        dönüş  a
+    başka :
+        dönüş  b
+
+def  max_of_three ( a , b , c ):
+    Dönüş  max_of_two ( bir , max_of_two ( b , c ))
+
+
+def  my_f_ ( list_1  = [ 4 , - 3 , 5 , - 2 , - 1 , 2 , 6 , - 2 ]):
+
+    n = len ( liste_1 )
+    eğer ( n == 1 ):
+        dönüş  listesi_1 [ 0 ]
+    left_i = 0
+    left_j = n // 2
+    right_i = n // 2
+    right_j = n
+    left_sum = my_f_ ( liste_1 [ left_i : left_j ])
+    right_sum = my_f_ ( liste_1 [ sağ_i : sağ_j ])
+    temp_left_sum = 0
+    t = 0
+    için  k  olarak  aralık ( left_j - 1 , left_i - 1 , - 1 ):
+        t = t + liste_1 [ k ]
+        eğer ( t > temp_left_sum ):
+            temp_left_sum = t
+    temp_right_sum = 0
+    t = 0
+    için  m  olarak  aralık ( right_i , right_j ):
+        t = t + liste_1 [ m ]
+        eğer ( t > temp_right_sum ):
+            temp_right_sum = t
+    center_sum = temp_left_sum + temp_right_sum
+    Dönüş  max_of_three ( left_sum , right_sum , center_sum )
