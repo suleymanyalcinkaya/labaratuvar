@@ -1,0 +1,122 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr  2 21:26:11 2020
+
+@author: suleyman
+"""
+
+def my_linear_search(my_list,item_search):
+    found=(-1,-1) #default, eğer listede yoksa
+    n=len(my_list)
+    for indis in my_list:
+        if my_list[indis]==item_search:
+            found=(my_list[indis],indis) #listede bulundu ,return bulunan sayı,indisi tuple olarak return edilir
+            #break,uncomment for last found
+    retunr found
+my list=get_n_random_numbers(10,-5,5)
+my_lst
+my_linear_search(my_list,3)
+
+my_list=get_n_random_numbers(10,-50,50)
+my list
+s,t=0,0
+for item in my_list:
+    s=s+1
+    t=t+item
+mean_=t/s
+mean_
+
+def my_mean(my_list):
+    s,t=0,0
+    for item in my_list:
+        s=s+1
+        t=t+item
+    mean_=t/s
+    return mean_
+
+my_list=get_n_random_numbers(10,-50,50)
+
+my_list
+n=len(my_list)
+print(my_list)
+for i in range(n-1,-1,-1):
+    for j in range(0,i):
+        if not(my_list[j]<my_list[j+1]):
+            #print("swap işlemi")
+            temp=my_list[j]
+            my_list[j]=my_list[j+1]
+            my_list[j+1]=temp
+print(my_list)
+
+def bubble_short(my_list):
+    n=len(my_list)
+    # print(my_list)
+    for i in range(n-1,-1,-1):
+        for j in range(0,i):
+            if not(my_list[j]<my_list[j+1]):
+                #print("swap işlemi")
+                temp=my_list[j]
+                my_list[j]=my_list[j+1]
+                my_list[j+1]=temp
+    return my_list
+my_list=get_n_random_numbers(4,-5,5)
+print(my_list)
+my_bubble_short(my_list)
+
+def my_binary_search(my_list,item_search):
+    found=(1,-1)
+    low=0
+    high=len(my_list)-1
+    
+    while low <= high:
+        mid=  (low+high)//2
+        
+        if my_list[mid]==item_search:
+            return my_list[mid],mid
+        elif my_list[mid] > item_search:
+            high=mid-1
+        else:
+            low=mid+1
+    return found #Nane
+my_list_1=get_n_random_numbers(10)
+print("liste ",my_liste_1)
+my_liste_2=bubble_sort(my_list_1)
+print("sırali liste ",my_liste_2)
+my_binary_search(my_list_2,3) 
+
+size=input("dizi boyutunu giriniz")
+size=int(size)
+my_list_1=get_n_random_numbers(size)
+
+print("liste",my_liste_1)
+
+my_list_2=bubble_sort(my_list_1)
+print(my_list_2)
+n=len(my_list_2)
+if n%2==1:
+    middle=int(n/2)+1
+    median=my_list_2[middle]
+    print(median)
+else:
+    middle_1=my_list_2[int(n/2)]
+    middle_2=my_list_2[int(n/2)+1]
+    median(middle_1+middle_2)/2
+    #print(median)
+my_list_2=get_n_random_numbers(5,-10,10)
+my_median(my_list_2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
