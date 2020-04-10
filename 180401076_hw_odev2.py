@@ -1,50 +1,50 @@
-ithalat  sys
-def  hist ( dosya ):
-    histogram  = []
-    içinde  = []
-    için  i  de  dosya :
-        check  =  Yanlış
-        altında . append ( int ( i . bölünmüş ( ";" ) [ 3 ]. bölünmüş ( "-" ) [ 1 ]))
-        için  k  olarak  aralık ( len ( Histogram )):
-            Eğer  int ( i . bölünmüş ( ";" ) [ 3 ]. bölünmüş ( "-" ) [ 1 ]) ==  histogramı [ k ] [ 0 ]:
-                histogram [ k ] [ 1 ] + =  1
-                check  =  Doğru
-        eğer  onay  ==  false :
-            histogram . append ([ int ( i . bölünmüş ( ";" ) [ 3 ]. bölünmüş ( "-" ) [ 1 ]), 1 ])
-    dönüş  histogramı , Veriler
+import sys
+def hist(dosya):
+    histogram = []
+    veriler = []
+    for i in dosya:
+        check = False
+        veriler.append(int(i.split(";")[3].split("-")[1]))
+        for k in range(len(histogram)):
+            if int(i.split(";")[3].split("-")[1]) == histogram[k][0]:
+                histogram[k][1] += 1
+                check = True
+        if check == False:
+            histogram.append([int(i.split(";")[3].split("-")[1]), 1])
+    return histogram,veriler
 
-def  ort ( dizi ):
-    toplam = 0
-    için  i  içinde  Dizi :
-        toplam + = i
-    dönüş  toplam / len ( dizi )
+def ort(dizi):
+    toplam=0
+    for i in dizi:
+        toplam+=i
+    return toplam/len(dizi)
 
-def  bubbleSort ( dizi ):
-    için  I  içinde  aralığı ( len ( dizi ) - 1 , - 1 , - 1 ):
-        için  j  olarak  aralık ( 0 , i )
-            Eğer  değil  dizi [ j ] < dizi [ j + 1 ]:
-                temp = dizi [ j ]
-                dizi [ j ], dizi [ j + 1 ] = dizi [ j + 1 ], sıcaklık
-    dönüş  dizisi
+def bubbleSort(dizi):
+    for i in range(len(dizi)-1,-1,-1):
+        for j in range(0,i):
+            if not dizi[j]<dizi[j+1]:
+                temp=dizi[j]
+                dizi[j],dizi[j+1]=dizi[j+1],temp
+    return dizi
 
-def  medyan ( dizi ):
-    dizi = bubbleSort ( dizi )
-    Eğer  Len ( dizi ) % 2 == 1 :
-        orta  =  int ( len ( dizi ) / 2 ) + 1
-        dönüş  dizisi [ orta - 1 ]
-    başka :
-        orta1 , orta2 = dizi [ int ( len ( dizi ) / 2 )], dizi [ int ( len ( dizi ) / 2 ) - 1 ]
-        dönüş ( orta1 + orta2 ) / 2
+def median(dizi):
+    dizi=bubbleSort(dizi)
+    if len(dizi)%2==1:
+        orta = int(len(dizi)/2)+1
+        return dizi[orta-1]
+    else:
+        orta1,orta2=dizi[int(len(dizi)/2)],dizi[int(len(dizi)/2)-1]
+        return (orta1+orta2)/2
 
-ile  açık ( sys . argv [ 1 ] + "input_hw_2.csv" ) olarak  dosya :
-    histogram  =  hist ( dosya )
-    aylar  =  histogram [ 1 ]
-    histogram  =  histogram [ 0 ]
-    dosyaYaz ( sys . argv [ 2 ])
-    yazdır ( "Histogram:" , histogram )
+with open(sys.argv[1]+"input_hw_2.csv") as dosya:
+    histogram = hist(dosya)
+    aylar = histogram[1]
+    histogram = histogram[0]
+    dosyaYaz(sys.argv[2])
+    print("Histogram : ",histogram)
 
-def  dosyaYaz ( adres ):
-    yaz  =  open ( adres + "180401104_hw_2_output.txt" , "w +" , kodlama = "UTF-8" )
-    yaz . yazma ( f "Medyan: { medyan ( aylar ) } " )
-    yaz . yazma ( f "Ortalama: { ort ( aylar ) } " )
-    yaz . kapat ()
+def dosyaYaz(adres):
+    yaz = open(adres+"180401104_hw_2_output.txt","w+",encoding="UTF-8")
+    yaz.write(f"Median : {median(aylar)}")
+    yaz.write(f"Ortalama : {ort(aylar)}")
+    yaz.close()
